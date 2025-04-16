@@ -1,7 +1,9 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
-import Header from "./components/Header"
-import RootPage from "./pages/RootPage"
-import CounterApp from "./pages/CounterApp"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Header from "./components/Header";
+import RootPage from "./pages/RootPage";
+import CounterApp from "./pages/CounterApp";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const router = createBrowserRouter([
   {
@@ -14,16 +16,14 @@ const router = createBrowserRouter([
       }
     ]
   }
-])
-
-
+]);
 
 function App() {
-
-
   return (
-    <RouterProvider router={router} />
-  )
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+  );
 }
 
-export default App
+export default App;
