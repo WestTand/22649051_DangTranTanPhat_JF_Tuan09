@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { increment, decrement } from '../store/actions';
-
+import { incrementTK, decrementTK } from '../store/counterSlice';
 const initialState = {
     count: 0
 };
@@ -20,7 +20,9 @@ const reducer = (state, action) => {
 const CounterApp = () => {
     const [state, dispatchLocal] = useReducer(reducer, initialState);
 
-    const countRedux = useSelector((state) => state.count);
+    const countRedux = useSelector((state) => state.reduxCounter.count);
+    const toolkitCount = useSelector((state) => state.toolkitCounter.count);
+
     const dispatchRedux = useDispatch();
 
     return (
@@ -63,6 +65,26 @@ const CounterApp = () => {
                     </button>
                 </div>
                 <p className='font-bold'>Redux Count: {countRedux}</p>
+            </div>
+
+            {/* Redux Toolkit Section */}
+            <div className='flex flex-col justify-center items-center space-y-3'>
+                <h1 className='font-bold text-2xl text-green-300'>Step 3: Redux Toolkit</h1>
+                <div className='flex flex-row space-x-3'>
+                    <button
+                        className='border-2 border-gray-50 hover:bg-green-300 p-3 rounded-lg text-2xl font-bold'
+                        onClick={() => dispatchRedux(incrementTK())}
+                    >
+                        +
+                    </button>
+                    <button
+                        className='border-2 border-gray-50 hover:bg-green-300 p-3 rounded-lg text-2xl font-bold'
+                        onClick={() => dispatchRedux(decrementTK())}
+                    >
+                        -
+                    </button>
+                </div>
+                <p className='font-bold'>Toolkit Count: {toolkitCount}</p>
             </div>
         </div>
     );
