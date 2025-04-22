@@ -7,6 +7,8 @@ import { toggleTheme } from "../store/themeSlice";
 const RootPage = () => {
     const dispatch = useDispatch();
     const isDarkMode = useSelector((state) => state.theme.isDarkMode);
+    const cartItems = useSelector((state) => state.cart.items);
+    const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
     // Apply theme to the entire app
     document.body.className = isDarkMode ? 'dark-theme' : '';
@@ -23,6 +25,19 @@ const RootPage = () => {
                             </li>
                             <li>
                                 <Link to="/todo" className="hover:text-gray-300">Todo List</Link>
+                            </li>
+                            <li>
+                                <Link to="/products" className="hover:text-gray-300">Products</Link>
+                            </li>
+                            <li>
+                                <Link to="/cart" className="hover:text-gray-300 relative">
+                                    Cart
+                                    {cartItemCount > 0 && (
+                                        <span className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full text-xs w-5 h-5 flex items-center justify-center">
+                                            {cartItemCount}
+                                        </span>
+                                    )}
+                                </Link>
                             </li>
                         </ul>
                         <button

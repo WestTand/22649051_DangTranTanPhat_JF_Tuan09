@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Header from "./components/Header";
 import RootPage from "./pages/RootPage";
 import CounterApp from "./pages/CounterApp";
 import TodoApp from "./pages/TodoApp";
+import ProductsPage from "./pages/ProductsPage";
+import CartPage from "./pages/CartPage";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 
@@ -18,6 +19,14 @@ const router = createBrowserRouter([
       {
         path: '/todo',
         element: <TodoApp />
+      },
+      {
+        path: '/products',
+        element: <ProductsPage />
+      },
+      {
+        path: '/cart',
+        element: <CartPage />
       }
     ]
   }
